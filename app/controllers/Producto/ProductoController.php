@@ -35,20 +35,20 @@
 
         public function removeProducto($id) {
             if (empty($id)) {
-                return $this->getProductos($id ,'No se recibió id del comprador', 'warning');
+                return $this->getProductos($id ,'No se recibió id del producto', 'warning');
             }
 
             if (!is_numeric($id)) {
-                return $this->getProductos($id, 'El id del comprador no es numérico', 'warning');
+                return $this->getProductos($id, 'El id del producto no es numérico', 'warning');
             }
 
             $result = $this->model->removeProducto($id);
 
             if (!$result || !$this->model->affected_rows()) {
-                return $this->getProductos("Hubo un error al cancela la reserva con id $id", 'warning' );
+                return $this->getProductos("Hubo un error al eliminarcon id $id", 'warning' );
             }
 
-            $this->getProductos($id, "Se ha cancelado la reserva con id $id exitosamente");
+            $this->getProductos($id, "Se ha eliminado el producto con id $id exitosamente");
         }
 
         public function editProducto($params)
@@ -56,7 +56,7 @@
             $result = $this->model->updateProducto($params);
 
             if (!$result || !$this->model->affected_rows()) {
-                return $this->getProductos("Hubo un error al editar el comprador con id {$params['id']}", 'warning' );
+                return $this->getProductos("Hubo un error al editar el producto con id {$params['id']}", 'warning' );
             }
 
             $this->getProductos("Comprador con id {$params['id']} actualizado");
@@ -66,7 +66,7 @@
             $result = $this->model->getProducto($id);
 
             if (!$result || !$this->model->affected_rows()) {
-                return $this->getProductos("Hubo un error al editar el comprador con id $id", 'warning' );
+                return $this->getProductos("Hubo un error al editar el producto con id $id", 'warning' );
             }
 
             $this->getProductos();
